@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const PostSchema = new mongoose.Schema({
-  title: {
+const ClientsSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
   },
@@ -13,7 +13,11 @@ const PostSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  caption: {
+  address: {
+    type: String,
+    required: true,
+  },
+  phone: {
     type: String,
     required: true,
   },
@@ -31,4 +35,4 @@ const PostSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Post", PostSchema);
+module.exports = mongoose.model("Clients", ClientsSchema);
