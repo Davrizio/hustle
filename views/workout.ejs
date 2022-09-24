@@ -1,0 +1,47 @@
+<%- include('partials/header') -%>
+<div class="container">
+  <div class="row mt-5">
+      <div class="col-6">
+          <div class="mt-5">
+            <h2>Add An Exercise</h2>
+            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+              <div class="mb-3">
+                  <label for="title" class="form-label">Exercise</label>
+                  <input type="text" class="form-control" id="title" name="title">
+              </div>
+              <div class="mb-3">
+                <label for="caption" class="form-label">Repititions</label>
+                <textarea class="form-control" id="caption" name="caption"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+            </form>
+          </div>
+          <div>
+            <p><strong>User Name</strong>: <%= user.userName %></p>
+            <p><strong>Email</strong>: <%= user.email %></p>
+            <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+          </div>
+      </div>
+      <div class="col-6">
+        <ul class="row list-unstyled">
+        <% for(var i=0; i<posts.length; i++) {%>
+          <li class="col-6 justify-content-between mt-5">
+            <a href="/post/<%= posts[i]._id%>">
+              <span><%= posts[i].title%></span>
+              <span><%= posts[i].caption%></span>
+            </a>
+            <form
+          action="/post/deletePost/<%= posts[i]._id %>?_method=DELETE"
+          method="POST"
+          class="col-3"
+            >
+          <button class="btn btn-primary fa fa-trash" type="submit"></button>
+        </form>
+          </li>
+        <% } %>
+        </ul>
+      </div>  
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') -%>
