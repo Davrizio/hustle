@@ -5,11 +5,13 @@ const homeController = require("../controllers/home");
 const startController = require("../controllers/start");
 const clientsController = require("../controllers/clients");
 const postsController = require("../controllers/posts");
+const apptsController = require("../controllers/appts");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Main Routes - simplified for now
 router.get("/", homeController.getIndex);
 router.get("/workout", ensureAuth, postsController.getWorkout);
+router.get("/appointments", ensureAuth, apptsController.getAppts);
 router.get("/clients", ensureAuth, clientsController.getClient);
 router.get("/feed", ensureAuth, postsController.getFeed);
 router.get("/start", ensureAuth, startController.getStart);
