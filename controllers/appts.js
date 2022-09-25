@@ -61,7 +61,7 @@ module.exports = {
       // Find post by id
       let post = await Appts.findById({ _id: req.params.id });
       // Delete post from db
-      await Post.remove({ _id: req.params.id });
+      await Appts.remove({ _id: req.params.id });
       console.log("Deleted Post");
       res.redirect("/appointments");
     } catch (err) {
