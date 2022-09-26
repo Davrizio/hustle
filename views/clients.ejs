@@ -1,47 +1,53 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row mt-5">
-      <div class="col-6">
-          <div class="mt-5">
+<div class="flex flex-col w-full lg:flex-row">
+  <div class="grid flex-grow h-920 card bg-base-300 rounded-box place-items-center">
+          <div class="">
             <h2>Add A Client</h2>
             <form action="/client/createPostClient" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="name" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="name" name="name">
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Client Name</span>
+                </label>
+                <label class="input-group">
+                  <span>Name</span>
+                  <input type="text" placeholder="First and Last Name" class="input input-bordered" id="name" name="name"/>
+                </label>
               </div>
-              <div class="mb-3">
-                <label for="address" class="form-label">Address</label>
-                <textarea class="form-control" id="address" name="address"></textarea>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Address</span>
+                </label>
+                <label class="input-group">
+                  <span>Address</span>
+                  <input type="text" placeholder="Full Address" class="input input-bordered" id="address" name="address"/>
+                </label>
               </div>
-              <div class="mb-3">
+              <div class="">
                 <label for="phone" class="form-label">Phone Number</label>
                 <textarea class="form-control" id="phone" name="phone"></textarea>
               </div>
-              <div class="mb-3">
+              <div class="">
                 <label for="imgUpload" class="form-label">Photo</label>
                 <input type="file" class="form-control" id="imageUpload" name="file">
               </div>
               <button type="submit" class="btn btn-primary" value="Upload">Save</button>
             </form>
           </div>
-          <div>
-            <p><strong>User Name</strong>: <%= user.userName %></p>
-            <p><strong>Email</strong>: <%= user.email %></p>
-            <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-          </div>
-      </div>
-      <div class="col-6">
-        <ul class="row list-unstyled">
+  </div>
+  <div class="divider lg:divider-horizontal"> </div> 
+  <div class="grid h-920 flex-grow card bg-base-300 rounded-box place-items-center">
+      <h2>Client List</h2>
+      <div class="">
+        <ul class="">
         <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
+          <li class="">
             <a href="/client/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
+              <img class="object-contain h-48 w-48" src="<%= posts[i].image%>">
             </a>
           </li>
         <% } %>
         </ul>  
       </div>  
-    </div>
   </div>
 </div>
 <%- include('partials/footer') -%>
