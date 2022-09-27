@@ -1,6 +1,30 @@
-<%- include('partials/header') -%>
-    <main class="container">
-        <div class="row justify-content-center">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hustle!</title>
+        <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/imgs/favicon-32x32.png"
+        />
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <main class="flex flex-col w-full border-opacity-50">
+        <div class="grid h-920 place-items-center">
+          <div class="navbar-center">
+            <a href="/login"><img class="object-contain" src="/imgs/logo.jpg"></a>
+          </div>
             <section class="col-6 mt-5">
                 <% if (locals.messages.errors) { %>
                     <% messages.errors.forEach( el => { %>
@@ -13,27 +37,50 @@
                     <% }) %>    
                 <% } %>
                 <form action="/signup" method="POST">
-                    <div class="mb-3">
-                        <label for="userName" class="form-label">User Name</label>
-                        <input type="text" class="form-control" id="userName" name="userName">
+                  <div class="hero min-h-screen bg-base-200">
+                    <div class="hero-content flex-col lg:flex-row-reverse">
+                      <div class="text-center lg:text-left">
+                        <h1 class="text-5xl font-bold">Signup Here!</h1>
+                        <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                       </div>
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                      <label for="password" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="password" name="password">
-                    </div>
-                    <div class="mb-3">
-                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+                      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                        <div class="card-body">
+                          <div class="form-control">
+                            <label class="label">
+                              <span class="label-text">Username</span>
+                            </label>
+                            <input type="text" placeholder="ex. The Rock" class="input input-bordered" id="userName" name="userName"/>
+                          </div>
+                          <div class="form-control">
+                            <label class="label">
+                              <span class="label-text">Email</span>
+                            </label>
+                            <input type="email" placeholder="ex. you@gmail.com" class="input input-bordered" id="exampleInputEmail1" aria-describedby="emailHelp" name="email"/>
+                          </div>
+                          <div class="form-control">
+                            <label class="label">
+                              <span class="label-text">Password</span>
+                            </label>
+                            <input type="password" placeholder="ex. 12345" class="input input-bordered" id="password" name="password"/>
+                          </div>
+                          <div class="form-control">
+                            <label class="label">
+                              <span class="label-text"> Confirm Password</span>
+                            </label>
+                            <input type="password" placeholder="ex. 12345" class="input input-bordered" id="confirmPassword" name="confirmPassword" />
+                            <label class="label">
+                              <a href="/login" class="label-text-alt link link-hover">Already A Member?</a>
+                            </label>
+                          </div>
+                          <div class="form-control mt-6">
+                            <button class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50">Signup</button>
+                          </div>
+                        </div>
                       </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
                   </form>
-            </section>
+              </section>
         </div>
     </main>
-
-<%- include('partials/footer') -%>
+</html>

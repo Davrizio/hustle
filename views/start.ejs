@@ -1,14 +1,34 @@
 <%- include('partials/header') -%>
-  <div class="grid h-920 grid grid-cols-1 gap-4 place-items-center h-56 text-cyan-50 font-bold">
-    <span class="">Hi! <%= user.userName %></span>
-      <div class="w-1/2 h-12 px-6 transition-colors duration-150 bg-cyan-900 rounded-lg focus:shadow-outline hover:bg-cyan-700">
-        <a class="" href="/workout">Create Workout</a>
-      </div> 
-      <div class="w-1/2 h-12 px-6 transition-colors duration-150 bg-cyan-900 rounded-lg focus:shadow-outline hover:bg-cyan-700">
-        <a class="" href="/appointments">View Appointments</a>
-      </div> 
-      <div class="w-1/2 h-12 px-6 transition-colors duration-150 bg-cyan-900 rounded-lg focus:shadow-outline hover:bg-cyan-700">
-        <a class="" href="/clients">View Clients</a>
-      </div> 
+  <div class="hero min-h-screen bg-base-200">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+      <div class="text-center lg:text-left">
+        <h1 class="text-5xl font-bold">Hi! <%= user.userName %></h1>
+      </div>
+      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div class="card-body">
+          <div class="form-control mt-6">
+            <button class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50">
+              <div>
+                <a class="" href="/workout">Create Workout</a>
+              </div>
+            </button>
+          </div>
+          <div class="form-control mt-6">
+            <button class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50">
+              <div>
+                <a class="" href="/clients">View Clients</a>
+              </div>
+            </button>
+          </div>
+          <div class="form-control mt-6">
+            <button class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50">
+              <div>
+                <a class="" href="/appointments">View Appointments</a>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-<%- include('partials/footer') -%>
+</html>
