@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a href="#"><img src="https://github.com/Davrizio/hustle/blob/main/public/imgs/favicon-32x32.png" alt="Hustle!" width="200"></a>
+  <a href="#"><img src="https://github.com/Davrizio/hustle/blob/main/public/imgs/logo.jpg" alt="Hustle!" width="200"></a>
   <br>
   Hustle!
   <br>
@@ -48,7 +48,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/amitmerchant1990/electron-markdownify
+$ git clone https://github.com/Davrizio/hustle.git
 
 # Go into the repository
 $ cd hustle
