@@ -90,5 +90,5 @@ MIT
 ---
 
 > GitHub [@davrizio](https://github.com/davrizio) &nbsp;&middot;&nbsp;
-> Twitter [@adavrizio](https://twitter.com/davrizio)
+> Twitter [@davrizio](https://twitter.com/davrizio)
 
