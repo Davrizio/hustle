@@ -1,39 +1,32 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row mt-5">
-      <div class="col-6">
-          <div class="mt-5">
+<div class="flex flex-col w-full lg:flex-row">
+      <div class="grid flex-grow h-920 card bg-base-300 rounded-box place-items-center">
+          <div class="">
             <h2>Add An Appointment</h2>
             <form action="/appointment/createPost" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
+              <div class="">
                   <label for="date" class="form-label">Date MM/DD/YYYY</label>
                   <input type="text" class="form-control" id="date" name="date">
               </div>
-              <div class="mb-3">
+              <div class="">
                 <label for="client" class="form-label">Client</label>
                 <textarea class="form-control" id="client" name="client"></textarea>
               </div>
               <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
             </form>
           </div>
-          <div>
-            <p><strong>User Name</strong>: <%= user.userName %></p>
-            <p><strong>Email</strong>: <%= user.email %></p>
-            <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-          </div>
       </div>
-      <div class="col-6">
-        <ul class="row list-unstyled">
+      <div class="divider lg:divider-horizontal">Appointments</div>
+      <div class="grid h-920 card bg-base-300 rounded-box">
+        <ul class="grid grid-cols-5 gap-4 place-items-start">
         <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/appointment/<%= posts[i]._id%>">
+          <li class="">
               <span><%= posts[i].date%></span>
               <span><%= posts[i].client%></span>
-            </a>
             <form
           action="/appointment/deletePost/<%= posts[i]._id %>?_method=DELETE"
           method="POST"
-          class="col-3"
+          class=""
             >
           <button class="btn btn-primary fa fa-trash" type="submit"></button>
         </form>
@@ -42,6 +35,5 @@
         </ul>
       </div>  
     </div>
-  </div>
 </div>
 <%- include('partials/footer') -%>

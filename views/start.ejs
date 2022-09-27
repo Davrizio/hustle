@@ -1,21 +1,14 @@
 <%- include('partials/header') -%>
-  <div class="container">
-    <div class="row justify-content-center mt-5">
-      <span>Hi! <%= user.userName %></span>
-      <div class="row justify-content-center mt-5">
-        <a class="btn btn-primary" href="/workout">Create Workout</a>
+  <div class="grid h-920 grid grid-cols-1 gap-4 place-items-center h-56 text-cyan-50 font-bold">
+    <span class="">Hi! <%= user.userName %></span>
+      <div class="w-1/2 h-12 px-6 transition-colors duration-150 bg-cyan-900 rounded-lg focus:shadow-outline hover:bg-cyan-700">
+        <a class="" href="/workout">Create Workout</a>
       </div> 
-      <div class="row justify-content-center mt-5">
-        <a class="btn btn-primary" href="/appointments">View Appointments</a>
+      <div class="w-1/2 h-12 px-6 transition-colors duration-150 bg-cyan-900 rounded-lg focus:shadow-outline hover:bg-cyan-700">
+        <a class="" href="/appointments">View Appointments</a>
       </div> 
-      <div class="row justify-content-center mt-5">
-        <a class="btn btn-primary" href="/clients">View Clients</a>
+      <div class="w-1/2 h-12 px-6 transition-colors duration-150 bg-cyan-900 rounded-lg focus:shadow-outline hover:bg-cyan-700">
+        <a class="" href="/clients">View Clients</a>
       </div> 
-    </div>
   </div>
-  <div>
-    <p><strong>User Name</strong>: <%= user.userName %></p>
-    <p><strong>Email</strong>: <%= user.email %></p>
-    <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-  </div>  
 <%- include('partials/footer') -%>
