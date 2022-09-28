@@ -18,7 +18,7 @@
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://github.com/Davrizio/hustle/blob/main/public/imgs/cat.gif)
+![screenshot](https://github.com/Davrizio/hustle/blob/main/public/imgs/hustlev1.gif)
 
 ## Key Features
 
