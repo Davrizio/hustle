@@ -30,11 +30,14 @@
 
 * Add random welcome message on start page
 * Select Exercises from list (instead of only adding new)
-* Attach Workout to specific client
+* Attach Workout to specific client and appointment
   - this would send workout to client page and remove from workout
 * Style exercise and client pages
 * Dropdown existing exercises in db to add to workout
 * Additional styiling refinements
+* Add Client only login
+  - client would be able to view appointments and workouts
+  - ability to notify client when workout is ready
 * Refactor
 
 ## How To Use
