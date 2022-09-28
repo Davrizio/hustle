@@ -32,9 +32,65 @@
         </div>
       </div>
     </div>
-  </div>
-    </form>
-  <div class="divider">Client List</div> 
+  </form>
+  <div class="hero min-h-fit py-3 mb-20">
+    <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-base-200">
+      <div class="card-body">
+        <div class="overflow-x-auto w-full">
+          <table class="table w-full">
+            <!-- head -->
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Client</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0; i<posts.length; i++) {%>
+                <tr>
+                  <td>
+                    <div class="flex items-center space-x-3">
+                      <div class="avatar">
+                        <form class="" action="/appointment/deletePost/<%= posts[i]._id %>?_method=DELETE" method="POST">
+                          <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
+                        </form>
+                      </div>
+                      <div>
+                        <%= posts[i].date.toUpperCase() %>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <%= posts[i].client.toUpperCase() %>
+                  </td>
+                  <th>
+                    <button class="btn btn-ghost btn-xs">
+                      <div>
+                        <a href="/exercise/<%= posts[i]._id%>" >Details</a>
+                      </div>
+                    </button>
+                  </th>
+                </tr>
+              <% } %>
+            </tbody>
+            <!-- foot -->
+            <tfoot>
+              <tr>
+                <th>Date</th>
+                <th>Client</th>
+                <th></th>
+              </tr>
+            </tfoot> 
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>  
+<%- include('partials/footer') -%>
+
+
+<div class="divider">Client List</div> 
   <div class="grid h-920 card bg-base-300 rounded-box">
       <div class="">
         <ul class="grid grid-cols-5 gap-4 place-items-start">
@@ -49,4 +105,3 @@
       </div>  
   </div>
 </div>
-<%- include('partials/footer') -%>

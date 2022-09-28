@@ -1,7 +1,7 @@
 <%- include('partials/header') -%>
-<div class="">
+<div>
   <form action="/exercise/createPost" enctype="multipart/form-data" method="POST">
-    <div class="hero min-h-740 py-2">
+    <div class="hero min-h-740 py-3">
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
           <div class="card-body">
             <div class="form-control">
@@ -24,22 +24,57 @@
       </div>
     </div>
   </form>
-      <div class="hero min-h-740 py-2">
-        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
+      <div class="hero min-h-fit py-3 mb-20">
+        <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-base-200">
           <div class="card-body">
-            <ul class="">
-              <% for(var i=0; i<posts.length; i++) {%>
-                  <li class="">
-                    <a href="/exercise/<%= posts[i]._id%>">
-                      <span><%= posts[i].title%></span>
-                      <span><%= posts[i].caption%></span>
-                    </a>
-                <form action="/exercise/deletePost/<%= posts[i]._id %>?_method=DELETE" method="POST">
-                  <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
-                </form>
-                </li>
-              <% } %>
-            </ul>
+            <div class="overflow-x-auto w-full">
+              <table class="table w-full">
+                <!-- head -->
+                <thead>
+                  <tr>
+                    <th>Exercise</th>
+                    <th>Reps</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(var i=0; i<posts.length; i++) {%>
+                    <tr>
+                      <td>
+                        <div class="flex items-center space-x-3">
+                          <div class="avatar">
+                            <form class="" action="/exercise/deletePost/<%= posts[i]._id %>?_method=DELETE" method="POST">
+                              <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
+                            </form>
+                          </div>
+                          <div>
+                            <%= posts[i].title.toUpperCase() %>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <%= posts[i].caption.toUpperCase() %>
+                      </td>
+                      <th>
+                        <button class="btn btn-ghost btn-xs">
+                          <div>
+                            <a href="/exercise/<%= posts[i]._id%>" >Details</a>
+                          </div>
+                        </button>
+                      </th>
+                    </tr>
+                  <% } %>
+                </tbody>
+                <!-- foot -->
+                <tfoot>
+                  <tr>
+                    <th>Exercise</th>
+                    <th>Reps</th>
+                    <th></th>
+                  </tr>
+                </tfoot> 
+              </table>
+            </div>
           </div>
         </div>
       </div>  
