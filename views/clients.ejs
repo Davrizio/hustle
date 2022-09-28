@@ -41,8 +41,8 @@
             <!-- head -->
             <thead>
               <tr>
-                <th>Date</th>
-                <th>Client</th>
+                <th>Name</th>
+                <th>Phone</th>
                 <th></th>
               </tr>
             </thead>
@@ -52,22 +52,22 @@
                   <td>
                     <div class="flex items-center space-x-3">
                       <div class="avatar">
-                        <form class="" action="/appointment/deletePost/<%= posts[i]._id %>?_method=DELETE" method="POST">
-                          <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
-                        </form>
+                        <div class="mask mask-squircle w-12 h-12">
+                          <img src="<%= posts[i].image%>" alt="Client image" />
+                        </div>
                       </div>
                       <div>
-                        <%= posts[i].date.toUpperCase() %>
+                        <%= posts[i].name.toUpperCase() %>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <%= posts[i].client.toUpperCase() %>
+                    <%= posts[i].phone %>
                   </td>
                   <th>
                     <button class="btn btn-ghost btn-xs">
                       <div>
-                        <a href="/exercise/<%= posts[i]._id%>" >Details</a>
+                        <a href="/client/<%= posts[i]._id%>" >Details</a>
                       </div>
                     </button>
                   </th>
@@ -77,8 +77,8 @@
             <!-- foot -->
             <tfoot>
               <tr>
-                <th>Date</th>
-                <th>Client</th>
+                <th>Name</th>
+                <th>Phone</th>
                 <th></th>
               </tr>
             </tfoot> 
@@ -88,20 +88,3 @@
     </div>
   </div>  
 <%- include('partials/footer') -%>
-
-
-<div class="divider">Client List</div> 
-  <div class="grid h-920 card bg-base-300 rounded-box">
-      <div class="">
-        <ul class="grid grid-cols-5 gap-4 place-items-start">
-        <% for(var i=0; i<posts.length; i++) {%>
-          <li class="">
-            <a href="/client/<%= posts[i]._id%>">
-              <img class="object-contain h-32 w-48" src="<%= posts[i].image%>">
-            </a>
-          </li>
-        <% } %>
-        </ul>  
-      </div>  
-  </div>
-</div>

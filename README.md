@@ -29,11 +29,13 @@
 ## ToDo
 
 * Add random welcome message on start page
-* Add active styling to bottom nav
 * Select Exercises from list (instead of only adding new)
 * Attach Workout to specific client
   - this would send workout to client page and remove from workout
-
+* Style exercise and client pages
+* Dropdown existing exercises in db to add to workout
+* Additional styiling refinements
+* Refactor
 
 ## How To Use
 
