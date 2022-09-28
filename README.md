@@ -28,7 +28,12 @@
 
 ## ToDo
 
-* 
+* Add random welcome message on start page
+* Add active styling to bottom nav
+* Select Exercises from list (instead of only adding new)
+* Attach Workout to specific client
+  - this would send workout to client page and remove from workout
+
 
 ## How To Use
 
