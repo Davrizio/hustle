@@ -65,11 +65,11 @@
                     <%= posts[i].phone %>
                   </td>
                   <th>
-                    <button class="btn btn-ghost btn-xs">
-                      <div>
-                        <a href="/client/<%= posts[i]._id%>" >Details</a>
-                      </div>
-                    </button>
+                    <div class="avatar">
+                      <form action="/client/deletePost/<%= posts.id %>?_method=DELETE" method="POST" class="col-3">
+                        <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
+                      </form>
+                    </div>
                   </th>
                 </tr>
               <% } %>
