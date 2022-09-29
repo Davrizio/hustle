@@ -41,26 +41,19 @@
                   <% for(var i=0; i<posts.length; i++) {%>
                     <tr>
                       <td>
-                        <div class="flex items-center space-x-3">
-                          <div class="avatar">
-                            <form class="" action="/appointment/deletePost/<%= posts[i]._id %>?_method=DELETE" method="POST">
-                              <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
-                            </form>
-                          </div>
-                          <div>
+                        <div>
                             <%= posts[i].date.toUpperCase() %>
-                          </div>
                         </div>
                       </td>
                       <td>
                         <%= posts[i].client.toUpperCase() %>
                       </td>
                       <th>
-                        <button class="btn btn-ghost btn-xs">
-                          <div>
-                            <a href="/exercise/<%= posts[i]._id%>" >Details</a>
-                          </div>
-                        </button>
+                        <div class="avatar">
+                          <form class="" action="/appointment/deletePost/<%= posts[i]._id %>?_method=DELETE" method="POST">
+                            <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
+                          </form>
+                        </div>
                       </th>
                     </tr>
                   <% } %>
