@@ -72,12 +72,4 @@
         </div>
       </div>  
 </div>
-<div class="dropdown dropdown-right">
-  <label tabindex="0" class="btn m-1">Choose Client</label>
-  <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-    <% for(var i=0; i<clist.length; i++) {%>
-      <li><a><%= clist[i].name.toUpperCase() %></a></li>
-    <% } %>
-  </ul>
-</div>
 <%- include('partials/footer') -%>

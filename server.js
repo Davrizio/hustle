@@ -13,6 +13,7 @@ const workoutRoutes = require("./routes/workout");
 const apptRoutes = require("./routes/appts");
 const clientRoutes = require("./routes/clients");
 const commentRoutes = require("./routes/comments");
+const clientWorkoutRoutes = require("./routes/clientWorkout");
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -61,6 +62,7 @@ app.use("/", mainRoutes);
 app.use("/exercise", workoutRoutes);
 app.use("/client", clientRoutes)
 app.use("/comment", commentRoutes);
+app.use("/clientWorkout", clientWorkoutRoutes);
 app.use("/appointment", apptRoutes);
 
 //Server Running

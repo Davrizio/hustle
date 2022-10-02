@@ -1,14 +1,12 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
-const Client = require("../models/clients");
 const Comment = require("../models/Comment");
 
 module.exports = {
   getWorkout: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
-      const clist = await Client.find({ user: req.user.id });
-      res.render("workout.ejs", { posts: posts, user: req.user, clist: clist });
+      res.render("workout.ejs", { posts: posts, user: req.user});
     } catch (err) {
       console.log(err);
     }

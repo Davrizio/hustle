@@ -1,20 +1,16 @@
 const cloudinary = require("../middleware/cloudinary");
 const Client = require("../models/clients");
+const Exercise = require("../models/Post");
 const Comment = require("../models/Comment");
+const clientPost = require("../models/clientExercise");
+
 
 module.exports = {
   getClient: async (req, res) => {
     try {
       const posts = await Client.find({ user: req.user.id });
-      res.render("clients.ejs", { posts: posts, user: req.user });
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  getFeed: async (req, res) => {
-    try {
-      const posts = await Client.find().sort({ createdAt: "desc" }).lean();
-      res.render("feed.ejs", { posts: posts });
+      const elist = await Exercise.find({ user: req.user.id });
+      res.render("clients.ejs", { posts: posts, user: req.user, elist: elist });
     } catch (err) {
       console.log(err);
     }
@@ -22,8 +18,10 @@ module.exports = {
   getPost: async (req, res) => {
     try {
       const post = await Client.findById(req.params.id);
+      const elist = await Exercise.find({ user: req.user.id });
+      const cworkout = await clientPost.find({ user: req.user.id });
       const comments = await Comment.find({post: req.params.id}).sort({ createdAt: "desc" }).lean();
-      res.render("client.ejs", { post: post, user: req.user, comments: comments });
+      res.render("client.ejs", { post: post, user: req.user, comments: comments, elist: elist, cworkout: cworkout});
     } catch (err) {
       console.log(err);
     }
