@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ClientExerciseSchema = new mongoose.Schema({
+const ClientExSchema = new mongoose.Schema({
   exercise: {
     type: String,
   },
@@ -11,8 +11,7 @@ const ClientExerciseSchema = new mongoose.Schema({
     type: String,
   },
   appointment: {
-    type: Date,
-    require: true,
+    type: String,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -24,4 +23,4 @@ const ClientExerciseSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("clientExercise", ClientExerciseSchema);
+module.exports = mongoose.model("clientEx", ClientExSchema);

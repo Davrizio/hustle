@@ -2,7 +2,8 @@ const cloudinary = require("../middleware/cloudinary");
 const Client = require("../models/clients");
 const Exercise = require("../models/Post");
 const Comment = require("../models/Comment");
-const clientPost = require("../models/clientExercise");
+const clientPost = require("../models/clientEx");
+const clientAppt = require("../models/appts");
 
 
 module.exports = {
@@ -20,8 +21,9 @@ module.exports = {
       const post = await Client.findById(req.params.id);
       const elist = await Exercise.find({ user: req.user.id });
       const cworkout = await clientPost.find({ user: req.user.id });
+      const cappt = await clientAppt.find({ user: req.user.id });
       const comments = await Comment.find({post: req.params.id}).sort({ createdAt: "desc" }).lean();
-      res.render("client.ejs", { post: post, user: req.user, comments: comments, elist: elist, cworkout: cworkout});
+      res.render("client.ejs", { post: post, user: req.user, comments: comments, elist: elist, cworkout: cworkout, cappt: cappt});
     } catch (err) {
       console.log(err);
     }
@@ -61,6 +63,7 @@ module.exports = {
     }
   },
   deletePost: async (req, res) => {
+    console.log('clients controller')
     try {
       // Find post by id
       let post = await Client.findById({ _id: req.params.id });

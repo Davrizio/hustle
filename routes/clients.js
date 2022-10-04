@@ -12,6 +12,6 @@ router.post("/createPostClient", upload.single("file"), clientsController.create
 
 router.put("/likePost/:id", clientsController.likePost);
 
-router.delete("/deletePost/:id", clientsController.deletePost);
+router.delete("/deletePost/:id", clientsController.deletePost, clientWorkoutController.deletePost);
 
 module.exports = router;

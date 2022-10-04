@@ -8,13 +8,18 @@
               <label class="label">
                 <span class="label-text">Add Date</span>
               </label>
-              <input type="text" placeholder="MM/DD/YYY" class="input input-bordered" id="date" name="date"/>
+              <input type="datetime-local" placeholder="MM/DD/YYY" class="input input-bordered" id="date" name="date"/>
             </div>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Add Client</span>
-              </label>
-              <input type="text" placeholder="ex. The Rock" class="input input-bordered" id="client" name="client"/>
+            <div class="dropdown dropdown-hover">
+              <label tabindex="0" class="btn m-1">Choose Client</label>
+              <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                <select name="client">
+                  <% let options = []; %>
+                  <% for(var i=0; i<clientList.length; i++) {%>
+                        <option value="<%= clientList[i].name.toUpperCase() %>"><%= clientList[i].name.toUpperCase() %></option>
+                  <% } %>
+                </select>
+              </ul>
             </div>
             <div class="form-control mt-6">
               <button type="submit" class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50" value="Upload">Save</button>
@@ -54,6 +59,11 @@
                             <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
                           </form>
                         </div>
+                        <button class="btn btn-ghost btn-xs">
+                          <div>
+                            <a href="/appointment/<%= posts[i]._id%>" >Workout</a>
+                          </div>
+                        </button>
                       </th>
                     </tr>
                   <% } %>
