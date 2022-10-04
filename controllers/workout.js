@@ -42,16 +42,16 @@ module.exports = {
       console.log(err);
     }
   },
-  likePost: async (req, res) => {
+  editPost: async (req, res) => {
     try {
       await Post.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { likes: 1 },
+          caption: req.body.edit
         }
       );
-      console.log("Likes +1");
-      res.redirect(`/post/${req.params.id}`);
+      console.log("Edit made");
+      res.redirect("/workout");
     } catch (err) {
       console.log(err);
     }

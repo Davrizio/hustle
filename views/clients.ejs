@@ -20,7 +20,13 @@
             <label class="label">
               <span class="label-text">Client Phone Number</span>
             </label>
-            <input type="text" placeholder="ex. 407-222-1111" class="input input-bordered" id="phone" name="phone"/>
+            <input type="tel" placeholder="ex. 407-222-1111" class="input input-bordered" id="phone" name="phone"/>
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Client Email</span>
+            </label>
+            <input type="email" placeholder="ex. bob@gmail.com" class="input input-bordered" id="email" name="email"/>
           </div>
           <div class="form-control">
             <label for="imgUpload" class="label">Photo</label>
@@ -62,11 +68,11 @@
                     </div>
                   </td>
                   <td>
-                    <%= posts[i].phone %>
+                    <a href="tel:<%= posts[i].phone %>"><%= posts[i].phone %></a>
                   </td>
                   <th>
                     <div class="avatar">
-                      <form action="/client/deletePost/<%= posts.id %>?_method=DELETE" method="POST" class="col-3">
+                      <form action="/client/deletePost/<%= posts[i].id %>?_method=DELETE" method="POST" class="col-3">
                         <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
                       </form>
                     </div>

@@ -1,10 +1,72 @@
 <%- include('partials/header') -%>
   <div class="card lg:card-side bg-base-100 shadow-xl">
-    <figure><img class="object-contain h-96 w-96" src="<%= post.image%>" alt="Client Image"/></figure>
+    <figure><img class="object-contain h-396 w-96" src="<%= post.image%>" alt="Client Image"/></figure>
     <div class="card-body">
+      <div class="dropdown">
+        <label tabindex="0" class="btn m-1">Edit</label>
+        <div tabindex="0" class="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content">
+          <form action="/client/editPost/<%= post.id %>?_method=PUT" method="POST">
+            <div class="hero min-h-740 py-3">
+                <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
+                  <div class="card-body">
+                    <div class="form-control">
+                      <label class="label">
+                        <span class="label-text">Edit Name</span>
+                      </label>
+                      <input type="text" value="<%= post.name %>" class="input input-bordered" id="editName" name="editName"/>
+                    </div>
+                    <div class="form-control">
+                      <label class="label">
+                        <span class="label-text">Edit Address</span>
+                      </label>
+                      <input type="text" value="<%= post.address %>" class="input input-bordered" id="editAddress" name="editAddress"/>
+                    </div>
+                    <div class="form-control">
+                      <label class="label">
+                        <span class="label-text">Edit Phone Number</span>
+                      </label>
+                      <input type="text" value="<%= post.phone %>" class="input input-bordered" id="editPhone" name="editPhone"/>
+                    </div>
+                    <div class="form-control">
+                      <label class="label">
+                        <span class="label-text">Edit Email</span>
+                      </label>
+                      <input type="email" value="<%= post.email %>" class="input input-bordered" id="editEmail" name="editEmail"/>
+                    </div>
+                    <div class="form-control mt-6">
+                      <button type="submit" class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50" value="Upload">Save</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="dropdown">
+          <label tabindex="0" class="btn m-1">Edit Photo</label>
+          <div tabindex="0" class="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content">
+            <form action="/client/editPhoto/<%= post.id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+              <div class="hero min-h-740 py-3">
+                  <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
+                    <div class="card-body">
+                      <div class="form-control">
+                        <label for="imgUpload" class="label">Photo</label>
+                        <input type="file" class="input input-bordered" id="imageUpload" name="file">
+                      </div>
+                      <div class="form-control mt-6">
+                        <button type="submit" class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50" value="Upload">Save</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       <h2 class="card-title"><%= post.name %></h2>
       <p><%= post.address %></p>
-      <p><%= post.phone %></p>
+      <a href="tel:<%= post.phone %>"><%= post.phone %></a>
+      <a href="mailto:<%= post.email %>"><%= post.email %></a>
       <div class="card-actions justify-end">
         <%if(post.user == user.id){ %>
         <form action="/client/deletePost/<%= post.id %>?_method=DELETE" method="POST" class="col-3">
@@ -14,4 +76,57 @@
       </div>
     </div>
   </div>
+  <div class="hero min-h-fit py-3 mb-20">
+    <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-base-200">
+      <div class="card-body">
+        <div class="overflow-x-auto w-full">
+          <table class="table w-full">
+            <!-- head -->
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0; i<cappt.length; i++) {%>
+                <%if(post.id == cappt[i].client){ %>
+                <tr>
+                  <td>
+                    <div>
+                        <%= cappt[i].date %>
+                    </div>
+                  </td>
+                  <td>
+                  </td>
+                  <th>
+                    <div class="avatar">
+                      <form class="" action="/appointment/deletePost/<%= cappt[i]._id %>?_method=DELETE" method="POST">
+                        <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
+                      </form>
+                    </div>
+                    <button class="btn btn-ghost btn-xs">
+                      <div>
+                        <a href="/appointment/<%= cappt[i]._id%>" >Workout</a>
+                      </div>
+                    </button>
+                  </th>
+                </tr>
+                <%}%>
+              <% } %>
+            </tbody>
+            <!-- foot -->
+            <tfoot>
+              <tr>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </tfoot> 
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>  
 <%- include('partials/footer') -%>

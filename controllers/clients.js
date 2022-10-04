@@ -29,7 +29,6 @@ module.exports = {
     }
   },
   createPost: async (req, res) => {
-    console.log('you are here')
     try {
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
@@ -39,6 +38,7 @@ module.exports = {
         cloudinaryId: result.public_id,
         address: req.body.address,
         phone: req.body.phone,
+        email: req.body.email,
         likes: 0,
         user: req.user.id,
       });
@@ -48,16 +48,19 @@ module.exports = {
       console.log(err);
     }
   },
-  likePost: async (req, res) => {
+  editPost: async (req, res) => {
     try {
-      await Post.findOneAndUpdate(
+      await Client.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { likes: 1 },
+          name: req.body.editName,
+          address: req.body.editAddress,
+          phone: req.body.editPhone,
+          email: req.body.editEmail,
         }
       );
-      console.log("Likes +1");
-      res.redirect(`/post/${req.params.id}`);
+      console.log("Client Edited!");
+      res.redirect("/clients");
     } catch (err) {
       console.log(err);
     }

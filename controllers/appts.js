@@ -4,7 +4,6 @@ const ClientList = require("../models/clients");
 const Exercise = require("../models/Post");
 const Comment = require("../models/Comment");
 const clientPost = require("../models/clientEx");
-const clientAppt = require("../models/appts");
 
 module.exports = {
   getAppts: async (req, res) => {
@@ -33,8 +32,6 @@ module.exports = {
       await Appts.create({
         date: req.body.date,
         client: req.body.client,
-        exercise: req.body.exercise,
-        likes: 0,
         user: req.user.id,
       });
       console.log("Date has been added!");
@@ -43,16 +40,17 @@ module.exports = {
       console.log(err);
     }
   },
-  likePost: async (req, res) => {
+  editPost: async (req, res) => {
     try {
       await Appts.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { likes: 1 },
+          date: req.body.editDate,
+          client: req.body.editClient,
         }
       );
-      console.log("Likes +1");
-      res.redirect(`/post/${req.params.id}`);
+      console.log("Date Edited!");
+      res.redirect("/appointments");
     } catch (err) {
       console.log(err);
     }
