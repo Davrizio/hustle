@@ -4,7 +4,13 @@ const ClientExSchema = new mongoose.Schema({
   exercise: {
     type: String,
   },
+  instruction: {
+    type: String,
+  },
   repititions: {
+    type: Number,
+  },
+  sets: {
     type: Number,
   },
   client: {

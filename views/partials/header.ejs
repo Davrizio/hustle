@@ -29,10 +29,10 @@
             <label tabindex="0" class="btn btn-ghost btn-circle">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
             </label>
-            <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-cyan-900 rounded-box w-52">
-              <li><a href="/workout"><span>Create Workout</span></a></li>
-              <li><a href="/clients"><span>Clients</span></a></li>
-              <li><a href="/appointments"><span>Appointments</span></a></li>
+            <ul tabindex="0" class="menu dropdown-content mt-3 p-2 shadow bg-cyan-900 rounded-box">
+              <li><a href="/workout" class="hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><span>Exercises</span></a></li>
+              <li><a href="/clients" class="hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><span>Clients</span></a></li>
+              <li><a href="/appointments" class="hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><span>Appointments</span></a></li>
             </ul>
           </div>
         </div>
@@ -40,11 +40,13 @@
           <img class="object-contain" src="/imgs/logo.jpg">
         </div>
         <div class="navbar-end">
-          <button class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50 font-bold py-2 px-4">
-            <div class="">
-              <a href="/logout" >Logout</a>
-            </div>
-          </button>
+          <div class="mx-5">
+            <button class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50 font-bold">
+              <div>
+                <a href="/logout" >Logout</a>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </header>

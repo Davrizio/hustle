@@ -21,8 +21,9 @@ module.exports = {
       const post = await ClientList.findById(req.params.id);
       const elist = await Exercise.find({ user: req.user.id });
       const cworkout = await clientPost.find({ user: req.user.id });
+      const clientList = await ClientList.find({ user: req.user.id });
       const comments = await Comment.find({post: req.params.id}).sort({ createdAt: "desc" }).lean();
-      res.render("appointment.ejs", { apptPost: apptPost, user: req.user, comments: comments, elist: elist, cworkout: cworkout, post: post });
+      res.render("appointment.ejs", { apptPost: apptPost, user: req.user, comments: comments, elist: elist, cworkout: cworkout, post: post, clientList: clientList });
     } catch (err) {
       console.log(err);
     }

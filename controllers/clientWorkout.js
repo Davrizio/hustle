@@ -25,6 +25,8 @@ module.exports = {
       await ClientExercise.create({
         exercise: req.body.exercise,
         repititions: req.body.repititions,
+        instruction: req.body.instruction,
+        sets: req.body.sets,
         appointment: req.body.appointment,
         client: req.body.client,
         user: req.user.id,
