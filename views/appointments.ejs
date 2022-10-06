@@ -47,7 +47,8 @@
                     <tr>
                       <td>
                         <div>
-                            <%= posts[i].date %>
+                            <% const apptDate = new Date(posts[i].date).toString() %>
+                            <h2><%= apptDate.substring(0,15) %> @ <%= apptDate.substring(16,21) %></h2>
                         </div>
                       </td>
                       <td>

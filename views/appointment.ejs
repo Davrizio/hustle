@@ -1,12 +1,12 @@
 <%- include('partials/header') -%>
-  <div class="">
+  <div class="">Appointment For:
     <% const clientls = clientList; %>
     <% const clientlsResult = clientls.find(({id}) => id == apptPost.client); %>
     <%= clientlsResult.name.toUpperCase() %>
   </div>
   <div>
-    <% const apptDate = new Date(apptPost.date) %>
-    <h2>Appointment <%= apptDate %></h2>
+    <% const apptDate = new Date(apptPost.date).toString() %>
+    <h2>Appointment Date: <%= apptDate.substring(0,15) %> Time: <%= apptDate.substring(15,21) %></h2>
   </div>
   <div>
     <form action="/clientWorkout/createPost" method="POST">
