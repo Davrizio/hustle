@@ -1,123 +1,126 @@
 <%- include('partials/header') -%>
-  <div class="">Appointment For:
+<section class="flex flex-col place-items-center">
+  <div class="w-auto">
+    <% const apptDate = new Date(apptPost.date).toString() %>
+    <h2 class="">Appointment Date: <%= apptDate.substring(0,15) %> Time: <%= apptDate.substring(15,21) %></h2>
+  </div>
+  <div class="w-auto">Create Workout For:
     <% const clientls = clientList; %>
     <% const clientlsResult = clientls.find(({id}) => id == apptPost.client); %>
     <%= clientlsResult.name.toUpperCase() %>
   </div>
-  <div>
-    <% const apptDate = new Date(apptPost.date).toString() %>
-    <h2>Appointment Date: <%= apptDate.substring(0,15) %> Time: <%= apptDate.substring(15,21) %></h2>
+  <div class="w-3/4">
+    <div class="">
+      <form action="/clientWorkout/createPost" method="POST">
+              <select class="select select-success w-1/2 max-w-xs" name="exercise">
+                <option class="disabled selected w-auto">Exercise</option>
+                <% let eOptions = []; %>
+                <% for(var i=0; i<elist.length; i++) {%>
+                    <option value="<%= elist[i].title.toUpperCase() %>"><%= elist[i].title.toUpperCase() %></option>
+                <%}%>
+              </select>
+              <select class="select select-success w-1/4 max-w-xs" name="reps">
+                <option class="disabled selected">Reps</option>
+                <% let rOptions = []; %>
+                <% for(i=0; i<100; i++) {%>
+                  <option value='<%= i %>'><%= i %></option>
+                <%}%>
+              </select>
+              <select class="select select-success w-1/4 max-w-xs" name="sets">
+                <option class="disabled selected">Sets</option>
+                <% let sOptions = []; %>
+                <% for(i=0; i<100; i++) {%>
+                  <option value='<%= i %>'><%= i %></option>
+                <%}%>
+              </select>
+        <input type="hidden" id="apptID"  name="appointment" value="<%= apptPost.id %>"></input>
+        <button class="btn bg-cyan-900 hover:bg-cyan-700 w-1/8" type="submit" value="Upload">ADD</button>
+      </form>
+    </div>
   </div>
-  <div>
-    <form action="/clientWorkout/createPost" method="POST">
-            <select class="select select-success w-full max-w-xs" name="exercise">
-              <option class="disabled selected">Choose Exercise</option>
-              <% let eOptions = []; %>
-              <% for(var i=0; i<elist.length; i++) {%>
-                  <option value="<%= elist[i].title.toUpperCase() %>"><%= elist[i].title.toUpperCase() %></option>
+  <div class="w-auto">
+    <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-base-200">
+      <div class="card-body">
+        <div class="overflow-x-auto w-full">
+          <table class="table w-full">
+            <thead>
+              <tr>
+                <th>Exercise</th>
+                <th>Reps</th>
+                <th>Sets</th>
+                <th>Instructions/Equipment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(i=0; i<cworkout.length; i++) {%>
+                <% if(apptPost._id == cworkout[i].appointment){ %>
+                  <tr>
+                    <td>
+                      <div>
+                        <%= cworkout[i].exercise %>
+                      </div>
+                    </td>
+                    <td>
+                      <%= cworkout[i].repititions %>
+                    </td>
+                    <td>
+                      <%= cworkout[i].sets %>
+                    </td>
+                    <td>
+                      <% const currentEx = cworkout[i].exercise.toUpperCase() %>
+                      <% const exercisels = elist; %>
+                      <% const exerciselsResult = exercisels.find(({title}) => title.toUpperCase() == currentEx) %>
+                      <%= exerciselsResult.caption.toUpperCase() %>
+                    </td>
+                    <th>
+                      <div class="avatar">
+                        <form action="/clientWorkout/deletePost/<%= cworkout[i]._id %>?_method=DELETE" method="POST">
+                          <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
+                        </form>
+                      </div>
+                    </th>
+                  </tr>
+                <%}%>
               <%}%>
-            </select>
-            <select class="select select-success w-full max-w-xs" name="reps">
-              <option class="disabled selected">Reps</option>
-              <% let rOptions = []; %>
-              <% for(i=0; i<100; i++) {%>
-                <option value='<%= i %>'><%= i %></option>
-              <%}%>
-            </select>
-            <select class="select select-success w-full max-w-xs" name="sets">
-              <option class="disabled selected">Sets</option>
-              <% let sOptions = []; %>
-              <% for(i=0; i<100; i++) {%>
-                <option value='<%= i %>'><%= i %></option>
-              <%}%>
-            </select>
-      <input type="hidden" id="apptID"  name="appointment" value="<%= apptPost.id %>"></input>
-      <button class="btn bg-cyan-900 hover:bg-cyan-700" type="submit" value="Upload">ADD</button>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>Exercise</th>
+                <th>Reps</th>
+                <th>Sets</th>
+                <th>Instructions/Equipment</th>
+              </tr>
+            </tfoot> 
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-auto">  
+    <form action="/comment/createComment/<%=apptPost._id%>" method="POST">
+          <div class="card w-fit max-w-sm shadow-2xl bg-base-200">
+            <div class="card-body">
+              <div>
+                <h3><%= comments.comment%></h3>
+              </div>
+              <div class="form-control">
+                <label for="comment" class="label">
+                  <span class="label-text">Add Note</span>
+                </label>
+                <textarea rows="5" cols="33" class="input input-bordered" id="comment" name="comment"/></textarea>
+              </div>
+                <button type="submit" class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50" value="Upload">Save Note</button>
+              </div>
+            </div>
+          </div>
     </form>
   </div>
-  <div class="hero min-h-fit py-3 mb-20">
-        <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-base-200">
-          <div class="card-body">
-            <div class="overflow-x-auto w-full">
-              <table class="table w-full">
-                <thead>
-                  <tr>
-                    <th>Exercise</th>
-                    <th>Reps</th>
-                    <th>Sets</th>
-                    <th>Instructions/Equipment</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% for(i=0; i<cworkout.length; i++) {%>
-                    <% if(apptPost._id == cworkout[i].appointment){ %>
-                    <tr>
-                      <td>
-                        <div>
-                          <%= cworkout[i].exercise %>
-                        </div>
-                      </td>
-                      <td>
-                        <%= cworkout[i].repititions %>
-                      </td>
-                      <td>
-                        <%= cworkout[i].sets %>
-                      </td>
-                      <td>
-                        <% const currentEx = cworkout[i].exercise.toUpperCase() %>
-                        <% const exercisels = elist; %>
-                        <% const exerciselsResult = exercisels.find(({title}) => title.toUpperCase() == currentEx) %>
-                        <%= exerciselsResult.caption.toUpperCase() %>
-                      </td>
-                      <th>
-                        <div class="avatar">
-                          <form action="/clientWorkout/deletePost/<%= cworkout[i]._id %>?_method=DELETE" method="POST">
-                            <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
-                          </form>
-                        </div>
-                      </th>
-                    </tr>
-                    <%}%>
-                  <%}%>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th>Exercise</th>
-                    <th>Reps</th>
-                    <th>Sets</th>
-                    <th>Instructions/Equipment</th>
-                  </tr>
-                </tfoot> 
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-</div>  
-  <form action="/comment/createComment/<%=apptPost._id%>" method="POST">
-      <div class="hero min-h-740 py-5">
-        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
-          <div class="card-body">
-            <div>
-              <h3><%= comments.comment%></h3>
-            </div>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Add Note</span>
-              </label>
-              <input type="text" placeholder="ex. need to work on strength this session" class="input input-bordered" id="comment" name="comment"/>
-            </div>
-              <button type="submit" class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50" value="Upload">Save Note</button>
-            </div>
-          </div>
-        </div>
-      </div>
-  </form>
-  <div class="">
+  <div class="w-auto">
     <%if(apptPost.user == user.id){ %>
-      <form action="/post/deletePost/<%= apptPost._id %>?_method=DELETE" method="POST" class="col-3" >
-        <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
+      <form action="/post/deletePost/<%= apptPost._id %>?_method=DELETE" method="POST" class="" >
+        <button class="btn bg-cyan-900 hover:bg-cyan-700" type="submit"> Delete Appointment</button>
       </form>
     <%}%>
   </div>
+</section>
 <%- include('partials/footer') -%>
