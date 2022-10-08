@@ -1,36 +1,34 @@
 <%- include('partials/header') -%>
 <div>
   <form action="/appointment/createPost" enctype="multipart/form-data" method="POST">
-    <div class="hero min-h-740 py-3">
-        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
+    <div class="hero py-3">
+        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-secondary">
           <div class="card-body">
             <div class="form-control">
               <label class="label">
                 <span class="label-text">Add Date</span>
               </label>
               <input type="datetime-local" placeholder="MM/DD/YYY" class="input input-bordered" id="date" name="date"/>
-            </div>
-            <div class="dropdown dropdown-hover">
-              <label tabindex="0" class="btn m-1">Choose Client</label>
-              <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                <select name="client">
-                  <% let options = []; %>
-                  <% for(var i=0; i<clientList.length; i++) {%>
-                        <option value="<%= clientList[i].id %>"><%= clientList[i].name.toUpperCase() %></option>
-                  <% } %>
-                </select>
-              </ul>
-            </div>
+              <label class="label">
+                <span class="label-text">Select Client</span>
+              </label>
+              <select class="select select-success max-w-xs" name="client">
+                <option class="disabled selected w-auto">Client</option>
+                <% let options = []; %>
+                <% for(var i=0; i<clientList.length; i++) {%>
+                  <option value="<%= clientList[i].id %>"><%= clientList[i].name.toUpperCase() %></option>
+                <%}%>
+              </select>
             <div class="form-control mt-6">
-              <button type="submit" class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50" value="Upload">Save</button>
+              <button type="submit" class="btn btn-info" value="Upload">Save</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </form>
-      <div class="hero min-h-fit py-3 mb-20">
-        <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-base-200">
+      <div class="hero py-3 mb-20">
+        <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-secondary">
           <div class="card-body">
             <div class="overflow-x-auto w-full">
               <table class="table w-full">
@@ -39,6 +37,8 @@
                   <tr>
                     <th>Date</th>
                     <th>Client</th>
+                    <th>Edit Date</th>
+                    <th>Delete</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -57,33 +57,27 @@
                         <%= clientlsResult.name.toUpperCase() %>
                       </td>
                       <th>
-                        <div class="dropdown">
-                          <label tabindex="0" class="btn m-1">Edit</label>
-                          <div tabindex="0" class="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content">
-                            <form action="/appointment/editPost/<%= posts[i].id %>?_method=PUT" method="POST">
-                              <div class="hero min-h-740 py-3">
-                                  <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
-                                    <div class="card-body">
-                                      <div class="form-control">
-                                        <input type="datetime-local" class="input input-bordered" id="editDate" name="editDate"/>
-                                      </div>
-                                      <div class="form-control mt-6">
-                                        <input type="hidden" id="editClient"  name="editClient" value="<%= posts[i].client %>"></input>
-                                        <button type="submit" class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50" value="Upload">Save</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                        <div class="avatar">
-                          <form class="" action="/appointment/deletePost/<%= posts[i]._id %>?_method=DELETE" method="POST">
-                            <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
+                        <div>
+                          <form action="/appointment/editPost/<%= posts[i].id %>?_method=PUT" method="POST">
+                            <div class="form-control">
+                              <div class="input-group">
+                                <input type="datetime-local" class="input input-bordered" id="editDate" name="editDate"/>
+                                <input type="hidden" id="editClient"  name="editClient" value="<%= posts[i].client %>"></input>
+                                <button type="submit" class="btn btn-square" value="Upload">Save</button>
+                              </div> 
+                            </div> 
                           </form>
                         </div>
-                        <button class="btn btn-ghost btn-xs">
+                      </th>
+                      <th>
+                        <div class="avatar">
+                          <form class="" action="/appointment/deletePost/<%= posts[i]._id %>?_method=DELETE" method="POST">
+                            <button class="btn fa fa-trash" type="submit"></button>
+                          </form>
+                        </div>
+                      </th>
+                      <th>
+                        <button class="btn">
                           <div>
                             <a href="/appointment/<%= posts[i]._id%>" >Workout</a>
                           </div>
@@ -97,6 +91,8 @@
                   <tr>
                     <th>Date</th>
                     <th>Client</th>
+                    <th>Edit Date</th>
+                    <th>Delete</th>
                     <th></th>
                   </tr>
                 </tfoot> 

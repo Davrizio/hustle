@@ -1,9 +1,9 @@
 <%- include('partials/header') -%>
-  <body class="bg-gray-600">
+  <body>
       <div>
         <form action="/exercise/createPost" enctype="multipart/form-data" method="POST">
           <div class="hero min-h-740 py-5">
-              <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
+              <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-secondary">
                 <div class="card-body">
                   <div class="form-control">
                     <label class="label">
@@ -18,7 +18,7 @@
                     <input type="text" placeholder="ex. 10 lb Dumbbells" class="input input-bordered" id="caption" name="caption"/>
                   </div>
                   <div class="form-control mt-6">
-                    <button type="submit" class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50" value="Upload">Save</button>
+                    <button type="submit" class="btn" value="Upload">Save</button>
                   </div>
                 </div>
               </div>
@@ -27,7 +27,7 @@
         </form>
       </div>
       <div class="hero py-5">
-        <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-base-200">
+        <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-secondary">
           <div class="card-body">
             <div class="overflow-x-auto w-full">
               <table class="table w-full">
@@ -35,7 +35,8 @@
                   <tr>
                     <th>Exercise</th>
                     <th>Instructions/Equipment</th>
-                    <th></th>
+                    <th>Edit Instructions/Equipment</th>
+                    <th>Delete</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -45,31 +46,24 @@
                         <%= posts[i].title.toUpperCase() %>
                       </td>
                       <td>
-                        <%= posts[i].caption.toUpperCase() %>
+                        <div> <%= posts[i].caption.toUpperCase() %> </div>
                       </td>
                       <th>
-                        <div class="dropdown">
-                          <label tabindex="0" class="btn m-1 bg-cyan-900 hover:bg-cyan-700 text-cyan-50">Edit</label>
-                          <div tabindex="0" class="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content">
-                            <form action="/exercise/editPost/<%= posts[i].id %>?_method=PUT" method="POST">
-                              <div class="hero min-h-740 py-3">
-                                <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
-                                  <div class="card-body">
-                                    <div class="form-control">
-                                      <input type="text" placeholder="<%= posts[i].caption.toUpperCase() %>" class="input input-bordered" id="edit" name="edit"/>
-                                    </div>
-                                    <div class="form-control mt-6">
-                                      <button type="submit" class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50" value="Upload">Save</button>
-                                    </div>
-                                  </div>
-                                </div>
+                        <div>
+                          <form action="/exercise/editPost/<%= posts[i].id %>?_method=PUT" method="POST">
+                            <div class="form-control">
+                              <div class="input-group">
+                                <input type="text" placeholder="Edit text" class="input input-bordered" id="edit" name="edit"/>
+                                <button type="submit" class="btn btn-square" value="Upload">Save</button>
                               </div>
-                            </form>
-                          </div>
+                            </div>
+                          </form>
                         </div>
+                      </th>
+                      <th>
                         <div class="avatar">
                           <form class="" action="/exercise/deletePost/<%= posts[i]._id %>?_method=DELETE" method="POST">
-                            <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
+                            <button class="btn fa fa-trash" type="submit"></button>
                           </form>
                         </div>
                       </th>
@@ -80,7 +74,8 @@
                     <tr>
                       <th>Exercise</th>
                       <th>Instructions/Equipment</th>
-                      <th></th>
+                      <th>Edit Instructions/Equipment</th>
+                      <th>Delete</th>
                     </tr>
                   </tfoot> 
               </table>
@@ -88,5 +83,5 @@
           </div>
         </div>
       </div>
-  </body>
+    </body>
 <%- include('partials/footer') -%>

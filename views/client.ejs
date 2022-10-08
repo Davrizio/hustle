@@ -31,7 +31,7 @@
                     <input type="email" value="<%= post.email %>" class="input input-bordered" id="editEmail" name="editEmail"/>
                   </div>
                   <div class="form-control mt-6">
-                    <button type="submit" class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50" value="Upload">Save</button>
+                    <button type="submit" class="btn" value="Upload">Save</button>
                   </div>
               </div>
             </div>
@@ -47,17 +47,11 @@
         <form action="/client/editPhoto/<%= post.id %>?_method=PUT" enctype="multipart/form-data" method="POST">
               <div class="bg-base-200">
                 <div class="form-control">
-                  <label for="imgUpload" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Photo</label>
-                  <input type="file" class="text-sm text-cyan-50
-                  file:mr-5 file:py-2 file:px-6
-                  file:border-0 file:rounded-lg
-                  file:text-sm file:font-medium
-                  file:bg-cyan-900 file:text-cyan-50
-                  hover:file:cursor-pointer hover:file:bg-cyan-700
-                  hover:file:text-cyan-100" id="imageUpload" name="file">
+                  <label for="imgUpload" class="block mb-2 text-sm font-medium">Photo</label>
+                  <input type="file" class="text-sm file:mr-5 file:py-2 file:px-6 file:border-0 file:rounded-lg file:text-sm file:font-medium id="imageUpload" name="file">
                 </div>
                 <div class="form-control mt-6">
-                  <button type="submit" class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50" value="Upload">Save</button>
+                  <button type="submit" class="btn" value="Upload">Save</button>
                 </div>
               </div>
         </form>
@@ -66,13 +60,13 @@
   </div>
 <body>
   <div class="hero py-3">
-    <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card w-96 shadow-xl bg-secondary">
       <div class="relative">
         <figure class="px-10 pt-10">
           <img src="<%= post.image%>" alt="Client Image" class="rounded-xl" />
         </figure>
         <div class="card-actions absolute bottom-0 left-0 ml-10">
-          <label for="my-modal-5" class="btn bg-cyan-900 hover:bg-cyan-700 h-auto w-auto opacity-75">Edit</label>
+          <label for="my-modal-5" class="btn btn-ghost btn-xs h-auto w-auto opacity-75">Edit</label>
         </div>
       </div>
       <div class="card-body items-center text-center">
@@ -83,18 +77,18 @@
         <div class="flex space-x-4">
           <%if(post.user == user.id){ %>
           <form action="/client/deletePost/<%= post.id %>?_method=DELETE" method="POST" class="col-3">
-            <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
+            <button class="btn btn-secondary fa fa-trash" type="submit"></button>
           </form>
           <%}%>
           <div class="card-actions">
-            <label for="my-modal-4" class="btn bg-cyan-900 hover:bg-cyan-700">Edit</label>
+            <label for="my-modal-4" class="btn btn-secondary">Edit</label>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="hero min-h-fit py-3 mb-20">
-    <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-base-200">
+    <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-secondary">
       <div class="card-body">
         <div class="overflow-x-auto w-full">
           <table class="table w-full">
@@ -102,7 +96,7 @@
             <thead>
               <tr>
                 <th>Date</th>
-                <th></th>
+                <th>Delete</th>
                 <th></th>
               </tr>
             </thead>
@@ -112,18 +106,21 @@
                 <tr>
                   <td>
                     <div>
-                        <%= cappt[i].date %>
+                        <div>
+                          <% const apptDate = new Date(cappt[i].date).toString() %>
+                          <h2><%= apptDate.substring(0,15) %> @ <%= apptDate.substring(16,21) %></h2>
+                      </div>
                     </div>
-                  </td>
-                  <td>
                   </td>
                   <th>
                     <div class="avatar">
                       <form class="" action="/appointment/deletePost/<%= cappt[i]._id %>?_method=DELETE" method="POST">
-                        <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
+                        <button class="btn fa fa-trash" type="submit"></button>
                       </form>
                     </div>
-                    <button class="btn btn-ghost btn-xs">
+                  </th>
+                  <th>
+                    <button class="btn btn-info">
                       <div>
                         <a href="/appointment/<%= cappt[i]._id%>" >Workout</a>
                       </div>
@@ -137,7 +134,7 @@
             <tfoot>
               <tr>
                 <th>Date</th>
-                <th></th>
+                <th>Delete</th>
                 <th></th>
               </tr>
             </tfoot> 

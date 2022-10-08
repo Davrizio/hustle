@@ -1,15 +1,15 @@
 <%- include('partials/header') -%>
-<section class="flex flex-col place-items-center">
-  <div class="w-auto">
+<section class="flex flex-col place-items-center space-y-4">
+  <div class="">
     <% const apptDate = new Date(apptPost.date).toString() %>
     <h2 class="">Appointment Date: <%= apptDate.substring(0,15) %> Time: <%= apptDate.substring(15,21) %></h2>
   </div>
-  <div class="w-auto">Create Workout For:
+  <div class="">Create Workout For:
     <% const clientls = clientList; %>
     <% const clientlsResult = clientls.find(({id}) => id == apptPost.client); %>
     <%= clientlsResult.name.toUpperCase() %>
   </div>
-  <div class="w-3/4">
+  <div class="w-1/2 pl-8">
     <div class="">
       <form action="/clientWorkout/createPost" method="POST">
               <select class="select select-success w-1/2 max-w-xs" name="exercise">
@@ -19,14 +19,14 @@
                     <option value="<%= elist[i].title.toUpperCase() %>"><%= elist[i].title.toUpperCase() %></option>
                 <%}%>
               </select>
-              <select class="select select-success w-1/4 max-w-xs" name="reps">
+              <select class="select select-success w-1/8 max-w-xs" name="reps">
                 <option class="disabled selected">Reps</option>
                 <% let rOptions = []; %>
                 <% for(i=0; i<100; i++) {%>
                   <option value='<%= i %>'><%= i %></option>
                 <%}%>
               </select>
-              <select class="select select-success w-1/4 max-w-xs" name="sets">
+              <select class="select select-success w-1/8 max-w-xs" name="sets">
                 <option class="disabled selected">Sets</option>
                 <% let sOptions = []; %>
                 <% for(i=0; i<100; i++) {%>
