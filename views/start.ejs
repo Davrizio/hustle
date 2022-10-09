@@ -1,27 +1,28 @@
 <%- include('partials/header') -%>
-  <div class="hero min-h-screen bg-base-100">
+  <div class="hero min-h-screen">
     <div class="hero-content flex-col lg:flex-row-reverse">
-      <div class="text-center lg:text-left">
-        <h1 class="text-5xl font-bold">Welcome! <%= user.userName.toUpperCase() %></h1>
+      <div class="text-center lg:text-left mx-1.5">
+        <h1 class="text-5xl font-bold">Welcome!</h1>
+        <h2 class="text-5xl font-bold"><%= user.userName.toUpperCase() %></h2>
       </div>
-      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
+      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-secondary">
         <div class="card-body">
           <div class="form-control mt-6">
-            <button class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50">
+            <button class="btn bg-info hover:bg-primary">
               <div>
                 <a class="" href="/workout">Create Workout</a>
               </div>
             </button>
           </div>
           <div class="form-control mt-6">
-            <button class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50">
+            <button class="btn bg-info hover:bg-primary">
               <div>
                 <a class="" href="/clients">View Clients</a>
               </div>
             </button>
           </div>
           <div class="form-control mt-6">
-            <button class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50">
+            <button class="btn bg-info hover:bg-primary">
               <div>
                 <a class="" href="/appointments">View Appointments</a>
               </div>
