@@ -24,21 +24,16 @@
 
 * Create new clients profiles with image upload.
 * Create and save workouts.
-* Create appointments. 
+* Create appointments.
+* Edit Exercise list.
+* Edit Appointments.
+* Edit Client workouts. 
 
 ## ToDo
 
-* Add random welcome message on start page
-* Select Exercises from list (instead of only adding new)
-* Attach Workout to specific client and appointment
-  - this would send workout to client page and remove from workout
-* Style exercise and client pages
-* Dropdown existing exercises in db to add to workout
-* Additional styiling refinements
-* Add Client only login
-  - client would be able to view appointments and workouts
-  - ability to notify client when workout is ready
-* Refactor
+* Fix redirect on client and appointment pages.
+* Style appointment.
+* Fix appointment note create.
 
 ## How To Use
 
