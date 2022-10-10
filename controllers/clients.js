@@ -60,7 +60,7 @@ module.exports = {
         }
       );
       console.log("Client Edited!");
-      res.redirect("/clients");
+      res.redirect(`/client/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }

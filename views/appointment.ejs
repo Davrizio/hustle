@@ -1,45 +1,45 @@
 <%- include('partials/header') -%>
 <section class="flex flex-col place-items-center space-y-4">
-  <div class="">
+  <div class="font-4xl font-bold h-auto">
     <% const apptDate = new Date(apptPost.date).toString() %>
-    <h2 class="">Appointment Date: <%= apptDate.substring(0,15) %> Time: <%= apptDate.substring(15,21) %></h2>
+    <h2>Appointment Date: <%= apptDate.substring(0,15) %> Time: <%= apptDate.substring(15,21) %></h2>
   </div>
-  <div class="">Create Workout For:
+  <div class="font-5xl font-bold">Create Workout For:
     <% const clientls = clientList; %>
     <% const clientlsResult = clientls.find(({id}) => id == apptPost.client); %>
     <%= clientlsResult.name.toUpperCase() %>
   </div>
-  <div class="w-1/2 pl-8">
-    <div class="">
-      <form action="/clientWorkout/createPost" method="POST">
-              <select class="select select-success w-1/2 max-w-xs" name="exercise">
-                <option class="disabled selected w-auto">Exercise</option>
-                <% let eOptions = []; %>
-                <% for(var i=0; i<elist.length; i++) {%>
-                    <option value="<%= elist[i].title.toUpperCase() %>"><%= elist[i].title.toUpperCase() %></option>
-                <%}%>
-              </select>
-              <select class="select select-success w-1/8 max-w-xs" name="reps">
-                <option class="disabled selected">Reps</option>
-                <% let rOptions = []; %>
-                <% for(i=0; i<100; i++) {%>
-                  <option value='<%= i %>'><%= i %></option>
-                <%}%>
-              </select>
-              <select class="select select-success w-1/8 max-w-xs" name="sets">
-                <option class="disabled selected">Sets</option>
-                <% let sOptions = []; %>
-                <% for(i=0; i<100; i++) {%>
-                  <option value='<%= i %>'><%= i %></option>
-                <%}%>
-              </select>
+  <div>
+    <form action="/clientWorkout/createPost" method="POST">
+      <div class="btn-group">
+        <select class="btn" name="exercise">
+          <option class="disabled selected w-auto">Exercise</option>
+          <% let eOptions = []; %>
+          <% for(var i=0; i<elist.length; i++) {%>
+              <option value="<%= elist[i].title.toUpperCase() %>"><%= elist[i].title.toUpperCase() %></option>
+          <%}%>
+        </select>
+        <select class="btn" name="reps">
+          <option class="disabled selected">Reps</option>
+          <% let rOptions = []; %>
+          <% for(i=0; i<100; i++) {%>
+            <option value='<%= i %>'><%= i %></option>
+          <%}%>
+        </select>
+        <select class="btn" name="sets">
+          <option class="disabled selected">Sets</option>
+          <% let sOptions = []; %>
+          <% for(i=0; i<100; i++) {%>
+            <option value='<%= i %>'><%= i %></option>
+          <%}%>
+        </select>
         <input type="hidden" id="apptID"  name="appointment" value="<%= apptPost.id %>"></input>
-        <button class="btn bg-cyan-900 hover:bg-cyan-700 w-1/8" type="submit" value="Upload">ADD</button>
-      </form>
-    </div>
+        <button class="btn" type="submit" value="Upload">ADD</button>
+      </div>
+    </form>
   </div>
   <div class="w-auto">
-    <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-base-200">
+    <div class="card flex-shrink-0 w-fit max-w-auto shadow-2xl bg-secondary">
       <div class="card-body">
         <div class="overflow-x-auto w-full">
           <table class="table w-full">
@@ -49,6 +49,7 @@
                 <th>Reps</th>
                 <th>Sets</th>
                 <th>Instructions/Equipment</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -75,7 +76,7 @@
                     <th>
                       <div class="avatar">
                         <form action="/clientWorkout/deletePost/<%= cworkout[i]._id %>?_method=DELETE" method="POST">
-                          <button class="btn bg-cyan-900 hover:bg-cyan-700 fa fa-trash" type="submit"></button>
+                          <button class="btn fa fa-trash" type="submit"></button>
                         </form>
                       </div>
                     </th>
@@ -89,6 +90,7 @@
                 <th>Reps</th>
                 <th>Sets</th>
                 <th>Instructions/Equipment</th>
+                <th></th>
               </tr>
             </tfoot> 
           </table>
@@ -96,29 +98,31 @@
       </div>
     </div>
   </div>
-  <div class="w-auto">  
-    <form action="/comment/createComment/<%=apptPost._id%>" method="POST">
-          <div class="card w-fit max-w-sm shadow-2xl bg-base-200">
-            <div class="card-body">
-              <div>
-                <h3><%= comments.comment%></h3>
-              </div>
-              <div class="form-control">
-                <label for="comment" class="label">
-                  <span class="label-text">Add Note</span>
-                </label>
-                <textarea rows="5" cols="33" class="input input-bordered" id="comment" name="comment"/></textarea>
-              </div>
-                <button type="submit" class="btn bg-cyan-900 hover:bg-cyan-700 text-cyan-50" value="Upload">Save Note</button>
-              </div>
-            </div>
+  <div class="w-8/12">  
+    <form action="/appointment/notePost/<%= apptPost._id %>?_method=PUT" method="POST">
+      <div class="card shadow-2xl bg-secondary">
+        <div class="card-body w-full">
+          <div class="input input-bordered">
+            <h3><%= apptPost.note%></h3>
           </div>
+          <div class="form-control">
+            <label for="note" class="label">
+              <span class="label-text">Add Note</span>
+            </label>
+            <textarea rows="5" cols="33" class="resize-none input input-bordered h-auto" id="note" name="note"></textarea>
+          </div>
+            <input type="hidden" id="editClient"  name="editClient" value="<%= apptPost.client %>"></input>
+            <input type="hidden" id="editDate"  name="editDate" value="<%= apptPost.date %>"></input>
+            <button type="submit" class="btn w-1/6" value="Upload">Save Note</button>
+          </div>
+        </div>
+      </div>
     </form>
   </div>
-  <div class="w-auto">
+  <div class="w-auto place-self-end mr-5">
     <%if(apptPost.user == user.id){ %>
       <form action="/post/deletePost/<%= apptPost._id %>?_method=DELETE" method="POST" class="" >
-        <button class="btn bg-cyan-900 hover:bg-cyan-700" type="submit"> Delete Appointment</button>
+        <button class="btn bg-secondary" type="submit"> Delete Appointment</button>
       </form>
     <%}%>
   </div>

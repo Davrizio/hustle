@@ -38,14 +38,13 @@ module.exports = {
     }
   },
   deletePost: async (req, res) => {
-    console.log('clientWorkout controller')
     try {
       // Find post by id
       let post = await ClientExercise.findById({ _id: req.params.id });
       // Delete post from db
       await ClientExercise.remove({ _id: req.params.id });
       console.log("Deleted Post");
-      res.redirect(`/appointments`);
+      res.redirect(`/appointments`); //don't know what to put here
     } catch (err) {
       res.redirect(`/appointments`);
     }

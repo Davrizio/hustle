@@ -22,7 +22,7 @@ module.exports = {
       const elist = await Exercise.find({ user: req.user.id });
       const cworkout = await clientPost.find({ user: req.user.id });
       const clientList = await ClientList.find({ user: req.user.id });
-      const comments = await Comment.find({post: req.params.id}).sort({ createdAt: "desc" }).lean();
+      const comments = await Comment.find({ post: req.params.id});
       res.render("appointment.ejs", { apptPost: apptPost, user: req.user, comments: comments, elist: elist, cworkout: cworkout, post: post, clientList: clientList });
     } catch (err) {
       console.log(err);
@@ -50,8 +50,22 @@ module.exports = {
           client: req.body.editClient,
         }
       );
-      console.log("Date Edited!");
-      res.redirect("/appointments");
+      console.log("Date Updated!");
+      res.redirect("appointments");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  notePost: async (req, res) => {
+    try {
+      await Appts.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          note: req.body.note
+        }
+      );
+      console.log("Note Updated!");
+      res.redirect(`/appointment/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }
