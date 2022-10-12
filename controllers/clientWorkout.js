@@ -1,6 +1,9 @@
 const cloudinary = require("../middleware/cloudinary");
 const ClientExercise = require("../models/clientEx");
 const Comment = require("../models/Comment");
+const Appts = require("../models/appts");
+const ClientList = require("../models/clients");
+const { getAppts, getPost } = require("./appts");
 
 module.exports = {
   getWorkout: async (req, res) => {
@@ -21,6 +24,7 @@ module.exports = {
     }
   },
   createPost: async (req, res) => {
+    const exAppt = req.body.appointment
     try {
       await ClientExercise.create({
         exercise: req.body.exercise,
@@ -32,7 +36,7 @@ module.exports = {
         user: req.user.id,
       });
       console.log("Execise has been added to client workout!");
-      res.redirect("/appointments");
+      res.redirect(`/appointment/${exAppt}`);
     } catch (err) {
       console.log(err);
     }
@@ -41,10 +45,13 @@ module.exports = {
     try {
       // Find post by id
       let post = await ClientExercise.findById({ _id: req.params.id });
+      let exAppt = await ClientExercise.find(req.body.appointment);
+      let [{appointment}] = exAppt
+      console.log(appointment)
       // Delete post from db
       await ClientExercise.remove({ _id: req.params.id });
       console.log("Deleted Post");
-      res.redirect(`/appointments`); //don't know what to put here
+      res.redirect(`/appointment/${appointment}`);
     } catch (err) {
       res.redirect(`/appointments`);
     }
