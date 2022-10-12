@@ -33,6 +33,7 @@
 
 * Show time in 12hr format
 * Add 30, 45, 60 sec timers on appointment page
+* Improve ui for edit in exercises and appointment
 
 ## How To Use
 
