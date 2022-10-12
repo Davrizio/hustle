@@ -31,9 +31,8 @@
 
 ## ToDo
 
-* Fix redirect on client and appointment pages.
-* Style appointment.
-* Fix appointment note create.
+* Show time in 12hr format
+* Add 30, 45, 60 sec timers on appointment page
 
 ## How To Use
 
