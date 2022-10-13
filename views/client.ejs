@@ -1,11 +1,11 @@
 <%- include('partials/header') -%>
   <input type="checkbox" id="my-modal-4" class="modal-toggle" />
   <div class="modal">
-    <div class="modal-box relative">
+    <div class="modal-box relative bg-secondary">
       <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <form action="/client/editPost/<%= post.id %>?_method=PUT" method="POST">
           <div class="">
-              <div class="bg-base-200">
+              <div class="bg-secondary">
                   <div class="form-control">
                     <label class="label">
                       <span class="label-text">Edit Name</span>
