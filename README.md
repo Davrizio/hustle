@@ -34,6 +34,7 @@
 * Show time in 12hr format
 * Add 30, 45, 60 sec timers on appointment page
 * Improve ui for edit in exercises and appointment
+* Dashboard landing page showing upcoming appts/top 5 exercises...
 
 ## How To Use
 
