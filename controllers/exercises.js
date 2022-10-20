@@ -37,7 +37,7 @@ module.exports = {
         user: req.user.id,
       });
       console.log("Execise has been added!");
-      res.redirect("/workout");
+      res.redirect("/exercises");
     } catch (err) {
       console.log(err);
     }
@@ -51,7 +51,7 @@ module.exports = {
         }
       );
       console.log("Edit made");
-      res.redirect("/workout");
+      res.redirect("/exercises");
     } catch (err) {
       console.log(err);
     }
@@ -63,9 +63,9 @@ module.exports = {
       // Delete post from db
       await Post.remove({ _id: req.params.id });
       console.log("Deleted Post");
-      res.redirect("/workout");
+      res.redirect("/exercises");
     } catch (err) {
-      res.redirect("/workout");
+      res.redirect("/exercises");
     }
   },
 };
