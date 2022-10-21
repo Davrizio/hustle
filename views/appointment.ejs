@@ -33,6 +33,14 @@
             <option value='<%= i %>'><%= i %></option>
           <%}%>
         </select>
+        <select class="btn" name="weight">
+          <option class="disabled selected">Weight</option>
+          <option>Bodyweight</option>
+          <% let wOptions = []; %>
+          <% for(i=0; i<150; i++) {%>
+            <option value='<%= i %>'><%= i %></option>
+          <%}%>
+        </select>
         <input type="hidden" id="apptID"  name="appointment" value="<%= apptPost.id %>"></input>
         <button class="btn" type="submit" value="Upload">ADD</button>
       </div>
@@ -48,6 +56,7 @@
                 <th>Exercise</th>
                 <th>Reps</th>
                 <th>Sets</th>
+                <th>Weight</th>
                 <th>Instructions/Equipment</th>
                 <th></th>
               </tr>
@@ -66,6 +75,9 @@
                     </td>
                     <td>
                       <%= cworkout[i].sets %>
+                    </td>
+                    <td>
+                      <%= cworkout[i].weight %>
                     </td>
                     <td>
                       <% const currentEx = cworkout[i].exercise.toUpperCase() %>
@@ -89,6 +101,7 @@
                 <th>Exercise</th>
                 <th>Reps</th>
                 <th>Sets</th>
+                <th>Weight</th>
                 <th>Instructions/Equipment</th>
                 <th></th>
               </tr>
