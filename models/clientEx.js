@@ -13,6 +13,9 @@ const ClientExSchema = new mongoose.Schema({
   sets: {
     type: Number,
   },
+  weight: {
+    type: String,
+  },
   client: {
     type: String,
   },

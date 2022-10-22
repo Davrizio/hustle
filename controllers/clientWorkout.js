@@ -31,6 +31,7 @@ module.exports = {
         repititions: req.body.repititions,
         instruction: req.body.instruction,
         sets: req.body.sets,
+        weight: req.body.weight,
         appointment: req.body.appointment,
         client: req.body.client,
         user: req.user.id,
@@ -47,7 +48,6 @@ module.exports = {
       let post = await ClientExercise.findById({ _id: req.params.id });
       let exAppt = await ClientExercise.find(req.body.appointment);
       let [{appointment}] = exAppt
-      console.log(appointment)
       // Delete post from db
       await ClientExercise.remove({ _id: req.params.id });
       console.log("Deleted Post");
