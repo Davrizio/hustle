@@ -54,7 +54,11 @@
                       <td>
                         <% const clientls = clientList; %>
                         <% const clientlsResult = clientls.find(({id}) => id == posts[i].client); %>
-                        <%= clientlsResult.name.toUpperCase() %>
+                        <% if(clientlsResult == undefined){ %>
+                            <span></span>
+                          <%} else{ %>
+                            <%= clientlsResult.name.toUpperCase() %>
+                          <%}%>
                       </td>
                       <th>
                         <div>
