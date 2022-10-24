@@ -35,10 +35,12 @@
         </select>
         <select class="btn" name="weight">
           <option class="disabled selected">Weight</option>
-          <option>Bodyweight</option>
+          <option>BODYWEIGHT</option>
           <% let wOptions = []; %>
-          <% for(i=0; i<150; i++) {%>
+          <% for(i=5; i<250; i++) {%>
+            <% if(i % 5 == 0) {%>
             <option value='<%= i %>'><%= i %></option>
+            <%}%>
           <%}%>
         </select>
         <input type="hidden" id="apptID"  name="appointment" value="<%= apptPost.id %>"></input>
