@@ -6,10 +6,12 @@
   </div>
   <div class="font-5xl font-bold">Create Workout For:
     <% const clientls = clientList; %>
-    <% console.log(apptPost.client) %>
     <% const clientlsResult = clientls.find(({id}) => id == apptPost.client); %>
-    <%= clientlsResult.name.toUpperCase() %>
-  </div>
+    <% if(clientlsResult == undefined){ %>
+      <span></span>
+    <%} else{ %>
+      <%= clientlsResult.name.toUpperCase() %>
+    <%}%>  </div>
   <div>
     <form action="/clientWorkout/createPost" method="POST">
       <div class="btn-group">
