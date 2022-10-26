@@ -11,7 +11,8 @@
       <span></span>
     <%} else{ %>
       <%= clientlsResult.name.toUpperCase() %>
-    <%}%>  </div>
+    <%}%>  
+  </div>
   <div>
     <form action="/clientWorkout/createPost" method="POST">
       <div class="btn-group">
@@ -143,7 +144,7 @@
   </div>
   <div class="w-auto place-self-end mr-5">
     <%if(apptPost.user == user.id){ %>
-      <form action="/post/deletePost/<%= apptPost._id %>?_method=DELETE" method="POST" class="" >
+      <form action="/post/deletePost/<%= apptPost._id %>?_method=DELETE" method="POST">
         <button class="btn bg-secondary" type="submit"> Delete Appointment</button>
       </form>
     <%}%>

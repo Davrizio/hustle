@@ -44,7 +44,7 @@ module.exports = {
   },
   deletePost: async (req, res) => {
     try {
-      // Find post by id
+      // Find post by id RETURNING WRONG ID
       let post = await ClientExercise.findById({ _id: req.params.id });
       let exAppt = await ClientExercise.find(req.body.appointment);
       let [{appointment}] = exAppt
