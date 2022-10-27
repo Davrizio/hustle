@@ -46,12 +46,10 @@ module.exports = {
     try {
       // Find post by id RETURNING WRONG ID
       let post = await ClientExercise.findById({ _id: req.params.id });
-      let exAppt = await ClientExercise.find(req.body.appointment);
-      let [{appointment}] = exAppt
       // Delete post from db
       await ClientExercise.remove({ _id: req.params.id });
-      console.log("Deleted Post");
-      res.redirect(`/appointment/${appointment}`);
+      console.log("Deleted Exercise");
+      res.redirect(`/appointment/${post.appointment}`);
     } catch (err) {
       res.redirect(`/appointments`);
     }
