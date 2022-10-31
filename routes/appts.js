@@ -15,4 +15,6 @@ router.put("/notePost/:id", apptsController.notePost);
 
 router.delete("/deletePost/:id", apptsController.deletePost);
 
+router.delete("/deletePostFromClient/:id", apptsController.deletePostFromClient);
+
 module.exports = router;

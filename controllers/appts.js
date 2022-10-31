@@ -82,4 +82,17 @@ module.exports = {
       res.redirect("/appointments");
     }
   },
+  deletePostFromClient: async (req, res) => {
+    try {
+      // Find post by id
+      let post = await Appts.findById({ _id: req.params.id });
+      console.log(post)
+      // Delete post from db
+      await Appts.remove({ _id: req.params.id });
+      console.log("Deleted Post");
+      res.redirect(`/client/${post.client}`);
+    } catch (err) {
+      res.redirect("/appointments");
+    }
+  },
 };
