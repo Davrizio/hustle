@@ -70,13 +70,14 @@ module.exports = {
       let post = await Client.findById({ _id: req.params.id });
       //Get client appointments
       const clientApptList = await clientAppt.find()
-      const clientAppointments = clientApptList.find(({client}) => client === req.params.id);
+      const clientAppointments = clientApptList.find(({client}) => client == req.params.id)
+      console.log(clientAppointments.client, req.params.id)
       // Delete image from cloudinary
       await cloudinary.uploader.destroy(post.cloudinaryId);
       // Delete post from db
-      await Client.remove({ _id: req.params.id });
-      await clientAppt.remove(clientAppointments);
-      console.log("Deleted Post");
+      await Client.deleteOne({ _id: req.params.id });
+      await clientAppt.deleteMany({client: clientAppointments.client});
+      console.log("Deleted Client and Related Appointments");
       res.redirect("/clients");
     } catch (err) {
       res.redirect("/clients");
