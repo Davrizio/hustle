@@ -54,7 +54,6 @@
                       <td>
                         <% const clientls = clientList; %>
                         <% const clientlsResult = clientls.find(({id}) => id == posts[i].client); %>
-                        <% console.log(posts[i].client, clientls) %>
                         <% if(clientlsResult == undefined){ %>
                             <span></span>
                           <%} else{ %>

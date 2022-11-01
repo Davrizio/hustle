@@ -35,7 +35,7 @@ module.exports = {
         client: req.body.client,
         user: req.user.id,
       });
-      console.log("Date has been added!");
+      console.log("Appointment has been added!");
       res.redirect("/appointments");
     } catch (err) {
       console.log(err);
@@ -76,7 +76,7 @@ module.exports = {
       let post = await Appts.findById({ _id: req.params.id });
       // Delete post from db
       await Appts.remove({ _id: req.params.id });
-      console.log("Deleted Post");
+      console.log("Deleted Appointment");
       res.redirect("/appointments");
     } catch (err) {
       res.redirect("/appointments");
@@ -86,10 +86,9 @@ module.exports = {
     try {
       // Find post by id
       let post = await Appts.findById({ _id: req.params.id });
-      console.log(post)
       // Delete post from db
       await Appts.remove({ _id: req.params.id });
-      console.log("Deleted Post");
+      console.log("Deleted Appointment");
       res.redirect(`/client/${post.client}`);
     } catch (err) {
       res.redirect("/appointments");

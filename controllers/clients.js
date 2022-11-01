@@ -39,10 +39,9 @@ module.exports = {
         address: req.body.address,
         phone: req.body.phone,
         email: req.body.email,
-        likes: 0,
         user: req.user.id,
       });
-      console.log("Post has been added!");
+      console.log("Client has been added!");
       res.redirect("/clients");
     } catch (err) {
       console.log(err);
@@ -66,14 +65,17 @@ module.exports = {
     }
   },
   deletePost: async (req, res) => {
-    console.log('clients controller')
     try {
       // Find post by id
       let post = await Client.findById({ _id: req.params.id });
+      //Get client appointments
+      const clientApptList = await clientAppt.find()
+      const clientAppointments = clientApptList.find(({client}) => client === req.params.id);
       // Delete image from cloudinary
       await cloudinary.uploader.destroy(post.cloudinaryId);
       // Delete post from db
       await Client.remove({ _id: req.params.id });
+      await clientAppt.remove(clientAppointments);
       console.log("Deleted Post");
       res.redirect("/clients");
     } catch (err) {
